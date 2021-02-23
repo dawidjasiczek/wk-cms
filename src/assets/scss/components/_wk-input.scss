@@ -1,0 +1,108 @@
+.wk-input{
+
+    &__inner{
+        border: 1px solid $gray_400;
+        border-radius: 5px;
+        padding: 25px 15px 10px;
+        cursor: text;
+
+        background-color: #fff;
+
+        position: relative;
+
+        &--focus{
+            border-color: $primary_400;
+        }
+        &--disabled{
+            cursor: not-allowed;
+
+            background-color: $gray_100;
+        }
+
+        &--correct{
+            border-color: $success_600;
+        }
+        &--incorrect{
+            border-color: $danger;
+        }
+    }
+
+    &__label{
+        display: block;
+        // width: 100%;
+        // font-weight: $font_bold;
+        // margin-bottom: 5px;
+        color: $gray_700;
+
+        position: absolute;
+        top: 0%;
+        left: 15px;
+        width: calc(100% - 30px);
+
+        transform: translateY(15px);
+
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+        text-align: left;
+
+        transition: all .2s ease-in-out;
+        transform-origin: left center;
+        cursor: text;
+        &--small{
+            transform: scale(.75) translateY(3px);
+            opacity: .85;
+            color: $primary_400;
+        }
+
+        &--disabled{
+            cursor: not-allowed;
+            color: $gray;
+        }
+
+        &--correct{
+            color: $success_600;
+        }
+        &--incorrect{
+            color: $danger;
+        }
+    }
+
+    &__input{
+        input, textarea{
+            display: block;
+            width: 100%;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: $gray_900;
+            outline: none;
+            padding: 0;
+            // border-radius: 5px;
+            border: none;
+            text-align: left;
+            // background-color: #fbf8ff;
+            font-weight: $font_normal;
+
+
+            &:disabled{
+                background-color: transparent
+            }
+        }
+
+        textarea{
+            resize: vertical;
+            min-height: 130px;
+        }
+    }
+
+    &__msg{
+        margin-top: 3px;
+        font-size: 0.85rem;
+        color: $danger;
+        line-height: 1rem;
+        padding: 0 15px;
+
+        text-align: left;
+    }
+}

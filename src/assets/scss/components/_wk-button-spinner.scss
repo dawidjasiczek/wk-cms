@@ -1,0 +1,43 @@
+.wk-button-spinner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: inherit;
+
+    &__spinner{
+        width: 25px;
+        
+        animation: wk-button-spinner-spin 1.5s linear infinite;
+
+        circle{
+            animation: wk-button-spinner-spin-dash 1.2s ease-in-out infinite;
+        }
+    }
+}
+
+@keyframes wk-button-spinner-spin {
+    100% {
+      transform: rotate(360deg);
+    }
+}
+@keyframes wk-button-spinner-spin-dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+}

@@ -1,0 +1,39 @@
+.wk-confirm{
+    display: inline-block;
+
+
+    &__content{
+        display: block;
+        border-radius: 5px;
+        //border: 1px solid $gray_100;
+        box-shadow: 0 0 9px 3px rgba(0,0,0,.08);
+        background-color: #fff;
+        padding: 15px;
+        font-size: 0.85rem;
+        letter-spacing: .2px;
+        line-height: 1.2rem;
+        // font-weight: normal;
+
+        max-width: 450px;
+        min-width: 100px;
+        position: relative;
+        z-index: 9999999999999;
+
+        
+        opacity: 0;
+        transition: all .2s ease;
+
+        &[data-visible]{
+            opacity: 1;
+        }
+
+        &--wider{
+            max-width: 600px;
+            min-width: 300px;
+        }
+    }
+
+    &__reference{
+        cursor: pointer;
+    }
+}

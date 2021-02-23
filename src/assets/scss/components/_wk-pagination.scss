@@ -1,0 +1,58 @@
+.wk-pagination{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    @include screen('sm'){
+        flex-direction: column;
+    }
+    &__pages{
+        margin-right: 30px;
+        @include screen('sm'){
+            margin-right: 0px;
+        }
+    }
+
+
+    &__buttons{
+        display: flex;
+        align-items: flex-end;
+        min-width: 400px;
+        @include screen('sm'){
+            min-width: auto
+        }
+        
+    }
+
+    &__pageb{
+        margin: 0 3px;
+        min-width: 33px;
+        @include screen('sm'){
+            padding: 2px !important;
+        }
+        &--rightend{
+            margin-left: 15px; margin-right: 0;
+            @include screen('sm'){
+                margin-left: 5px;
+            }
+           
+        }
+        &--leftend{
+            margin-right: 15px; margin-left: 0;
+            @include screen('sm'){
+                margin-right: 5px;
+            }
+            
+        }
+        &--around{
+            @include screen('xs'){
+                display: none;
+            }
+        }
+        &--dots{
+            @include screen('sm'){
+                display: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+.wk-viewport{
+    padding: 30px;
+    padding-left: 80px;
+    transition: padding .4s ease;
+
+    @include screen('sm'){
+        padding: 15px;
+        padding-left: 65px;
+    }
+
+    &--stretched{
+        padding-left: 380px;
+
+        @include screen('sm'){
+            padding-left: 65px;
+        }
+    }
+
+    &__content{
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 10px;
+
+        @include screen('sm'){
+            padding: 15px;
+        }
+    }
+}

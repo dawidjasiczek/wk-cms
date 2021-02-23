@@ -1,0 +1,38 @@
+.wk-tooltip{
+    display: inline-block;
+
+
+    &__content{
+        display: block;
+        border-radius: 5px;
+        background-color: $gray_800;
+        color: #fff;
+        padding: 10px;
+        font-size: 0.85rem;
+        letter-spacing: .2px;
+        line-height: 1.2rem;
+        // font-weight: normal;
+
+        max-width: 450px;
+        min-width: 100px;
+        position: relative;
+        z-index: 9999999999999;
+
+        pointer-events: none;
+        opacity: 0;
+        transition: all .2s ease;
+
+        &[data-visible]{
+            opacity: 1;
+        }
+
+        &--wider{
+            max-width: 600px;
+            min-width: 300px;
+        }
+    }
+
+    &__reference{
+        cursor: pointer;
+    }
+}

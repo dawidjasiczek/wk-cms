@@ -1,0 +1,50 @@
+.wk-tabs{
+
+    &__header{
+        border-bottom: 2px solid $gray_300;
+        margin-bottom: 10px;
+    }
+    &__nav{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &__navitem{
+        padding: 10px 15px;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        font-size: inherit;
+        font-weight: $font_normal;
+        font-family: inherit;
+        background-color: $gray_50;
+        // border-right: 2px solid #fff;
+        cursor: pointer;
+        transition: all .2s ease;
+
+        position: relative;
+
+        &:hover{
+            color: $secondary;
+        }
+
+        &--active{
+            color: #fff;
+            background-color: $secondary;
+            font-weight: $font_bold;
+
+            &:hover{
+                color: #fff;
+            }
+
+            &::after{
+                content: '';
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: $secondary;
+            }
+        }
+    }
+}

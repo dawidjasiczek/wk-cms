@@ -1,0 +1,58 @@
+.text{
+    &--center{
+        text-align: center;
+    }
+    &--left{
+        text-align: left;
+    }
+    &--right{
+        text-align: right;
+    }
+
+    &--light{
+        color: $gray_600;
+    }
+    &--watermark{
+        color: $gray_300;
+    }
+
+    &--sm{
+        font-size: .85rem;
+    }
+
+    &--bold{
+        font-weight: $font_bold !important;
+    }
+
+    &--primary{
+        color: $primary !important;
+    }
+    &--secondary{
+        color: $secondary !important;
+    }
+    &--danger{
+        color: $danger !important;
+    }
+    &--success{
+        color: $success !important;
+    }
+    &--info{
+        color: $info !important;
+    }
+    &--white{
+        color: #fff !important;
+    }
+}
+
+.heading{
+    font-size: 48px;
+    line-height: 56px;
+    margin: 0 0 45px 0;
+    color: $primary;
+
+    @include screen('sm'){
+        font-size: 36px;
+        line-height: 42px;
+        margin-bottom: 30px;
+    }
+}

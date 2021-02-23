@@ -1,0 +1,39 @@
+.wk-tag{
+    display: inline-block;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: $gray_100;
+    font-size: .85rem;
+    line-height: 1rem;
+
+    &--sm{
+        font-size: .75rem;
+        line-height: .95rem;
+        padding: 3px;
+    }
+    &--lg{
+        font-size: 1rem;
+        line-height: 1.15rem;
+        padding: 7px;
+    }
+    &--primary{
+        background-color: $primary;
+        color: white;
+    }
+    &--secondary{
+        background-color: $secondary;
+        color: white;
+    }
+    &--info{
+        background-color: $info;
+        color: white;
+    }
+    &--success{
+        background-color: $success;
+        color: white;
+    }
+    &--danger{
+        background-color: $danger;
+        color: white;
+    }
+}

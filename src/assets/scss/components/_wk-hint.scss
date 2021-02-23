@@ -1,0 +1,52 @@
+.wk-hint{
+
+    display: flex;
+    align-items: flex-start;
+
+    padding: 15px;
+    border-radius: 5px;
+
+    &--danger{
+        background-color: $danger_100;
+        color: $danger_800;
+    }
+    &--info{
+        background-color: $gray_100;
+        color: #444;
+    }
+
+    &__icon{
+        width: 30px;
+        margin-right: 15px;
+
+        img, svg{
+            display: block;
+            width: 100%;
+        }
+    }
+
+    &__danger{
+        path{
+            fill: $danger !important;
+        }
+    }
+    &__info{
+        path{
+            fill: $gray_700 !important;
+        }
+    }
+
+    &__details{
+        width: calc(100% - 45px);
+    }
+    &__title{
+        font-size: .85rem;
+        line-height: 1rem;
+        margin: 0 0 5px 0;
+        font-weight: $font_bold;
+    }
+    &__text{
+        font-size: .85rem;
+        line-height: 1rem;
+    }
+}

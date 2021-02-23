@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
+$gray_50: #f9f9f9;
+
+$success_100: #E3FCDF;
+$danger_100: #FCE4DA;
+$info_100: #D2F5FF;
+$primary_100: #CED9F5; 
+$secondary_100:  #FFEDCC; 
+$gray_100: #ededee;
+
+$success_200: #C3F9C0;
+$danger_200: #FAC3B6;
+$info_200: #A6E7FF;
+$primary_200: #A0B4EC; 
+$secondary_200: #FFD799; 
+$gray_200: #e0e1e2;
+
+$success_300: #9DEFA0;
+$danger_300: #F0988E;
+$info_300: #79D3FF;
+$primary_300: #667EC6; 
+$secondary_300:  #FFBB66; 
+$gray_300: #d2d3d4;
+
+$success_400: #7FDF8C;
+$danger_400: #E1706E;
+$info_400: #58BFFF;
+$primary_400: #384B8D; 
+$secondary_400: #FF9F3F; 
+$gray_400: #c3c4c6;
+
+$success: #57CB72; //500
+$danger: #ce424c; //500
+$info: #219EFF; //500
+$primary: #0d1842; //500
+$secondary:  #ff7200; //500
+$gray: #b2b3b5;
+
+$success_600: #3FAE64;
+$danger_600: #B13045;
+$info_600: #187BDB;
+$primary_600: #091238; 
+$secondary_600:  #DB5600; 
+$gray_600: #9fa0a3;
+
+$success_700: #2B9257;
+$danger_700: #94213E;
+$info_700: #105CB7;
+$primary_700: #060D2F; 
+$secondary_700:  #B73D00; 
+$gray_700: #88898d;
+
+$success_800: #1B754A;
+$danger_800: #771536;
+$info_800: #0A4093;
+$primary_800: #060D2F; 
+$secondary_800:  #932900; 
+$gray_800: #6b6c71;
+
+$success_900: #106142;
+$danger_900: #620C31;
+$info_900: #062D7A;
+$primary_900: #040926; 
+$secondary_900:  #7A1B00; 
+$gray_900: #3d3f45;
+
+// FONTS VARIABLES
+$font: 'Montserrat', sans-serif;
+$font_normal: 300;
+$font_bold: 600; 
+
+html{
+    
+    font-family: $font !important;
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: $font_normal;
+}
+.wrapper{
+    width: 100%;
+    max-width: 1800px;
+    padding: 0 30px;
+    margin: 0 auto;
+
+    &--narrow{
+        max-width: 1440px;
+    }
+
+    &--tight{
+        max-width: 1100px;
+    }
+}
+body {
+
+    margin: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+    background-color: $gray_50;
+    *{
+        box-sizing: border-box;
+    }
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+
+    &.a--link{
+        color: $secondary;
+        font-weight: $font_bold;
+    }
+}
+
+p{
+    line-height: 22px;
+    margin: 15px 0;
+}
+
+.offline-alert{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($gray_800, 0.7);
+    z-index: 99999999;
+    &__content{
+        position: absolute;
+        top: 50%;
+        left:50%;
+        text-align: center;
+        font-size: 18px;
+        transform: translateX(-50%) translateY(-50%);
+        background-color: #fefefe;
+        padding: 20px;
+        border-radius: 5px;
+    }
+    &__spinner{
+        position: relative;
+        width: 40px;
+        height: 40px;
+        margin: 0 auto;
+        margin-top: 10px;
+        svg{
+            width: 40px !important;
+        }
+    }
+}
+
+@import './utils/_index';
+@import './components/_index';
+@import './_login';

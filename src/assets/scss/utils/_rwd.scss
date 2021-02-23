@@ -1,0 +1,48 @@
+.sm{
+    &--hidden{
+        @include screen('sm'){
+            display: none !important;
+        }
+    }
+    &--visible{
+        @include screen('sm', 'min'){
+            display: none !important;
+        }
+    }
+}
+.md{
+    &--hidden{
+        @include screen('md'){
+            display: none !important;
+        }
+    }
+    &--visible{
+        @include screen('md', 'min'){
+            display: none !important;
+        }
+    }
+}
+.lg{
+    &--hidden{
+        @include screen('lg'){
+            display: none !important;
+        }
+    }
+    &--visible{
+        @include screen('lg', 'min'){
+            display: none !important;
+        }
+    }
+}
+.xl{
+    &--hidden{
+        @include screen('xl'){
+            display: none !important;
+        }
+    }
+    &--visible{
+        @include screen('xl', 'min'){
+            display: none !important;
+        }
+    }
+}
