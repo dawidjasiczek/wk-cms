@@ -11,5 +11,6 @@
     - [**Inne**](/komponenty/inne/)
     - [**Blog**](/komponenty/blog/)
     - [**Wysiwyg**](/komponenty/wysiwyg/)
+    - [**Filemanager**](/komponenty/filemanager/)
     - [**Special**](/komponenty/special/)
     
