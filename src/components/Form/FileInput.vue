@@ -66,10 +66,7 @@ export default {
             ([...droppedFiles]).forEach(f => {
                 this.pushFileToFiles(f)
             });
-            if(files.length > 0){
-                this.$emit('input', this.files);
-                this.clear()
-            }
+            this.$emit('input', this.files);
         },
         async validate(){
             if(!this.required){
@@ -95,10 +92,7 @@ export default {
                 ([...files]).forEach(f => {  
                     this.pushFileToFiles(f)
             });
-            if(files.length > 0){
-                this.$emit('input', this.files);
-                this.clear()
-            }
+            this.$emit('input', this.files);
         },
         async pushFileToFiles(f){
             if(this.files.length >= this.filesLimit || (!this.multi && this.files.length >= 1)){

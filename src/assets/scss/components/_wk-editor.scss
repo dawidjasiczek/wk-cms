@@ -9,8 +9,11 @@
 	  transition: all 0.3s ease-in-out;
 	  position: relative;
 	  iframe{
-		  border:none;
-	  }
+		border:none;
+		width: 100%;
+		height: auto;
+		min-height: 360px;
+	}
 	  &-img{
 		width: 100%; 
 		max-width: 650; 

@@ -69,6 +69,9 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(fas);
 
+
+import vClickOutside from 'v-click-outside'
+
 const WkCMS = {
     install(Vue, options) {
 
@@ -131,6 +134,7 @@ const WkCMS = {
        Vue.component('WkFormsEditor', WkFormsEditor);
 
        Vue.use(MessageBox);
+       Vue.use(vClickOutside)
     }
    };
    

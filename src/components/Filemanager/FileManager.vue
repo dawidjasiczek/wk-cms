@@ -17,7 +17,7 @@
                                 <div class="wkfm-alertbar__text">
                                     {{alert.text}}
                                 </div>
-                                <button class="wkfm-alertbar__btn btn " @click="alert.show = false"><fa-icon icon="times"></fa-icon></button>
+                                 <button class="wkfm-alertbar__btn btn " @click="alert.show = false"><fa-icon icon="times"></fa-icon></button>
                             </div>
                         </div>
                         </transition>
@@ -60,15 +60,25 @@
                             </template>
                             <template v-if="additional_modal.move">
                                 <div class="wkfm-additional-modal__dirlist">
-                                    <WkSelect :options="onlyDirs" :value="additional_modal.move_target_dir" @input="(v)=> additional_modal.move_target_dir = v" label="Wybierz folder" />
+                                    <WkSelect 
+                                    textProp="text" 
+                                    valueProp="value" 
+                                    :options="onlyDirs" 
+                                    v-model="additional_modal.move_target_dir" label="Wybierz folder" />
                                 </div>
                             </template>
                             
 
                         </div>
                         <div class="wkfm-additional-modal__controls">
-                            <button @click="handleModalConfirm" class="btn relative" :class="{'btn--success': !additional_modal.invertedColors, 'btn--danger': additional_modal.invertedColors}">{{additional_modal.confirmTxt}} <WkButtonSpinner :show="loading" /></button>
-                            <button @click="handleModalClose" class="btn" :class="{'btn--success': additional_modal.invertedColors, 'btn--danger': !additional_modal.invertedColors}">{{additional_modal.closeTxt}}</button>
+                            <WkButton @click="handleModalConfirm" 
+                            :color="((additional_modal.invertedColors == true)? 'danger':'success')"
+                            :loading="loading"
+                            >{{additional_modal.confirmTxt}} </WkButton>
+
+                            <WkButton @click="handleModalClose" 
+                            :color="((additional_modal.invertedColors == true)? 'success':'danger')"
+                            >{{additional_modal.closeTxt}}</WkButton>
                         </div>
                     </div>
                 </div>
@@ -76,7 +86,7 @@
                 </transition>
                 <div class="wkfm-nav" >
                     <div class="wkfm-nav__grid">
-                        <button class="btn btn--primary" @click="oneDirBack"><fa-icon icon="arrow-up"></fa-icon></button>
+                        <WkButton @click="oneDirBack" color="primary"><fa-icon icon="arrow-up"></fa-icon></WkButton>
                         <div class="wkfm-path"  id="path">
                             <div class="wkfm-path__item" v-for="(h_item, index) in showHistory" :key="index">
                                 <div class="btn" 
@@ -85,13 +95,14 @@
                             </div>
                             </div>
                         </div>
-                        <button class="btn btn--primary" @click="list_mode = !list_mode"><fa-icon v-if="!list_mode" icon="list" /><fa-icon v-if="list_mode" icon="th" /></button>
+                        <WkButton color="primary" @click="list_mode = !list_mode"><fa-icon v-if="!list_mode" icon="list" /><fa-icon v-if="list_mode" icon="th" /></WkButton>
                     </div>
                     <div class="wkfm-nav__grid btns_distance">
-                         <button @click="optionClicked({option: {slug: 'mkdir'}})" class="btn wkfm-btn--files "><fa-icon icon="folder"></fa-icon><span v-if="!smallMode">Nowy folder</span></button>
+                         <WkButton @click="optionClicked({option: {slug: 'mkdir'}})" ><fa-icon icon="folder"></fa-icon><span v-if="!smallMode">Nowy folder</span></WkButton>
 
-                        <button @click="openFileUploadModal" class="btn wkfm-btn--files btn--info"><fa-icon icon="file-upload"></fa-icon><span  v-if="!smallMode">Prześlij pliki</span></button>
-                        <button class="btn wkfm-btn--clos btn--danger " @click="emitClose"><fa-icon icon="times"></fa-icon></button>
+                        <WkButton  @click="openFileUploadModal" color='primary'><fa-icon icon="file-upload"></fa-icon><span  v-if="!smallMode">Prześlij pliki</span></WkButton>
+
+                        <WkButton color="danger" @click="emitClose"><fa-icon icon="times"></fa-icon></WkButton>
                     </div>
                 </div>
                 <div class="wkfm-content">
@@ -133,15 +144,15 @@
                         
                         <div  class="wkfm-ibar-content__name">
                         <h3  v-if="!open_entry.name_edit_mode">{{open_entry.entry_plainname}} </h3>
-                        <button v-if="!open_entry.name_edit_mode" class="btn btn--warning wkfm-ibar-content__cbutton" @click="infobarOpenEditMode">
+                        <WkButton v-if="!open_entry.name_edit_mode" classes="btn btn--warning wkfm-ibar-content__cbutton" @click="infobarOpenEditMode">
                             <fa-icon icon="pencil-alt"></fa-icon>
-                        </button>
-                        <button v-if="open_entry.name_edit_mode" class="btn btn--success wkfm-ibar-content__cbutton" @click="renameEntry(false)">
+                        </WkButton>
+                        <WkButton v-if="open_entry.name_edit_mode" classes="btn btn--success wkfm-ibar-content__cbutton" @click="renameEntry(false)">
                             <fa-icon   icon="check"></fa-icon>
-                        </button>
-                        <button v-if="open_entry.name_edit_mode" class="btn btn--danger wkfm-ibar-content__cbutton" @click="infobarCloseEditMode">
+                        </WkButton>
+                        <WkButton v-if="open_entry.name_edit_mode" classes="btn btn--danger wkfm-ibar-content__cbutton" @click="infobarCloseEditMode">
                             <fa-icon icon="times"></fa-icon>
-                        </button>
+                        </WkButton>
                         </div>
                         
                     </div>
@@ -228,6 +239,12 @@ export default {
         prefix: {
             type: String,
             default:  "files"
+        },
+        mimeTypeFilter: {
+            type: Array,
+            default: function () {
+                return ['*']
+            }
         },
         allowedMimetypes: {
             type: Array,
@@ -432,6 +449,7 @@ export default {
         //-------ENTRIES FUNCTIONS -------////
         
         async renameEntry(newName){
+            if(this.loading == true) return;
             
             if(newName === false){
                 newName = this.$refs.ename.value
@@ -449,17 +467,18 @@ export default {
             }
             const oldName = this.open_entry.entry_name;
             this.loading = true;
-            let r = await this.$axios.$post(`/filemanager/`+this.prefix+`/rename/`, {
-                name: this.open_entry.entry_name,
-                path: this.path+"/",
-                new_plainname: newName
-            }, {
-                headers: {
-                    'content-type': 'application/json'
-                }
-            });
-            if (r && r.success== true) {
-                this.loading = false;
+
+            try {
+                let r = await this.$axios.$post(`/filemanager/`+this.prefix+`/rename/`, {
+                    name: this.open_entry.entry_name,
+                    path: this.path+"/",
+                    new_plainname: newName
+                }, {
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                });
+
                 const ix = this.entries.findIndex(_ => _.entry_name == oldName);
                 this.open_entry.name_edit_mode = false;
                 
@@ -469,59 +488,53 @@ export default {
                 this.entries[ix].entry_plainname = r.entries.entry_plainname
                 this.entries[ix].entry_size = r.entries.entry_size
                 this.handleAlert({type:'success', text:'Zmieniono nazwę' })
-            } else {
-                //console.log(r)
-                this.open_entry.name_edit_mode = false;
-                this.loading = false;
-                this.handleAlert({type:'danger', text:'Wystąpił błąd podczas zmiany nazwy. Error Code: '+r.error_code})
-            }
+            } catch(e) {}
+
+            this.loading = false;
         },
         async deleteFileEntry(){
-            
+            if(this.loading == true) return;
+
             this.loading = true;
-            const oldName = this.open_entry.entry_name;
-            
-            let r = await this.$axios.$delete(`/filemanager/`+this.prefix+`/remove_file/?name=`+this.open_entry.entry_name+"&path="+this.path+"/", {
-                headers: {
-                    'content-type': 'application/json'
-                }
-            });
-            if (r && r.success== true) {
-                this.loading = false;
+            const oldName = this.open_entry.entry_name;          
+
+            try {
+                let r = await this.$axios.$delete(`/filemanager/`+this.prefix+`/remove_file/?name=`+this.open_entry.entry_name+"&path="+this.path+"/", {
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                });                
                 const ix = this.entries.findIndex(_ => _.entry_name == oldName);
                 if(ix === -1) return;
                 this.entries.splice(ix, 1);
                 this.handleAlert({type:'success', text:'Usunięto plik '})
-                
-            } else {
-                //console.log(r)
-                this.loading = false;
-                this.handleAlert({type:'danger', text:'Wystąpił błąd podczas usuwania. Error Code: '+r.error_code})
-            }
+            } catch(e) {}
+
+            this.loading = false;
         },
         async deleteDirEntry(){
+            if(this.loading == true) return;
             this.loading = true;
             const oldName = this.open_entry.entry_name;
             const  p = this.path+"/"+this.open_entry.entry_name+"/";
-            let r = await this.$axios.$delete('/filemanager/'+this.prefix+'/rmdir/?path='+p, {
-                headers: {
-                    'content-type': 'application/json'
-                }
-            });
-            if (r && r.success== true) {
-                this.loading = false;
+
+            try {
+                let r = await this.$axios.$delete('/filemanager/'+this.prefix+'/rmdir/?path='+p, {
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                });
+                
                 const ix = this.entries.findIndex(_ => _.entry_name == oldName);
                 if(ix === -1) return;
                 this.entries.splice(ix, 1);
                 this.handleAlert({type:'success', text:'Usunięto folder '})
-                
-            } else {
-                //console.log(r)
-                this.loading = false;
-                this.handleAlert({type:'danger', text:'Wystąpił błąd podczas usuwania. Error Code: '+r.error_code})
-            }
+            } catch(e) {}
+
+            this.loading = false;
         },
         async createDir(){
+            if(this.loading == true) return;
             const name = this.$refs.modal_input.value;
             
             if(!dir_name_reg.test(name) || name == ".."){
@@ -529,56 +542,51 @@ export default {
                 return
             }
             this.loading = true;
-            let r = await this.$axios.$post('/filemanager/'+this.prefix+'/mkdir/', {
-                name:  name,
-                path: this.path+"/",
-            }, {
-                headers: {
-                    'content-type': 'application/json'
-                }
-            });
-            if (r && r.success== true) {
+            try {
+                let r = await this.$axios.$post('/filemanager/'+this.prefix+'/mkdir/', {
+                    name:  name,
+                    path: this.path+"/",
+                }, {
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                });
                 this.entries.unshift(r.entries)
-                this.loading = false;
-                this.handleAlert({type:'success', text:'Stworzono folder'})
                 
-            } else {
-               // console.log(r)
-                this.loading = false;
-                this.handleAlert({type:'danger', text:'Wystąpił błąd podczas tworzenia folderu. Error Code: '+r.error_code})
-            }
+                this.handleAlert({type:'success', text:'Stworzono folder'})
+            } catch(e) {}
+            this.loading = false;
         },
         async Move(){
+            if(this.loading == true) return;
+
+
             this.loading = true;
             const oldName = this.open_entry.entry_name;
             let p = this.path+"/"+this.additional_modal.move_target_dir
             if(this.additional_modal.move_target_dir == "one-back"){
                 p = this.path_history.slice(0, this.path_history.length-1).join('/');
             }
-            //console.log(p)
+
             const q = {
                 name: this.open_entry.entry_name,
                 path: this.path+"/",
                 new_path: p
             }
-            let r = await this.$axios.$post('/filemanager/'+this.prefix+'/move/',  q, {
-                headers: {
-                    'content-type': 'application/json'
-                }
-            });
-            if (r && r.success== true) {
 
+            try {
+                let r = await this.$axios.$post('/filemanager/'+this.prefix+'/move/',  q, {
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                });
                 const ix = this.entries.findIndex(_ => _.entry_name == oldName);
                 if(ix === -1) return;
                 this.entries.splice(ix, 1);
                 this.loading = false;
                 this.handleAlert({type:'success', text:'Przeniesiono folder'})
-                
-            } else {
-                //console.log(r)
-                this.loading = false;
-                this.handleAlert({type:'danger', text:'Wystąpił błąd podczas przenoszenia folderu. Error Code: '+r.error_code})
-            }
+            } catch(e) {}
+            this.loading = false;
         },
         // whiteRightClick(e){
         //     console.log(e)
@@ -707,46 +715,40 @@ export default {
             fileLink.click();
         },
         async uploadFiles(){
-            try{
-                if(this.isNode){
-                    let ar = [];
-                    for(let i = 0; i < this.files.length; i++){
-                        let fd = new FormData();
-                        fd.append("path", this.path+"/");
-                        fd.append("file", this.files[i]);
-                        ar.push(
-                            this.$axios.$post('/filemanager/'+this.prefix+'/upload/', fd, {
-                            headers: {
-                                'content-type': 'multipart/form-data'
-                            }
-                        })) 
-                    }
-                    this.loading = true;
+            if(this.loading == true) return;
+            this.loading = true;
+            this.progressbar.show = true;
+ 
+            if(this.isNode){
+                let ar = [];
+                for(let i = 0; i < this.files.length; i++) {
+                    let fd = new FormData();
+                    fd.append("path", this.path+"/");
+                    fd.append("file", this.files[i]);
+                    ar.push(
+                        this.$axios.$post('/filemanager/'+this.prefix+'/upload/', fd, {
+                        headers: {
+                            'content-type': 'multipart/form-data'
+                        }
+                    })) ;
+                }
+
+                try {
                     let r = await Promise.all(ar)
-                    for(let j = 0; j < r.length; j++){
-                        if (r[j] && r[j].success== true) {
-                            // console.log(r[j])
-                            this.entries = this.entries.concat(r[j].entries)
-                        } else {
-                            // console.log(r[j])
-                            this.handleAlert({type:'danger', text:'Wystąpił błąd podczas wysyłania pików. Error Code: '+r[j].error_code})
-                            
-                            this.progressbar.show = false;
+                    for (let i = 0; i < r.length; i++) {
+                        
+                         for (let j = 0; j < r[i].entries.length; j++) {
+                            this.entries.unshift(r[i].entries[j])
                         }
                     }
-                    this.files = []
                     this.handleAlert({type:'success', text:'Przesłano pliki'})
-                    this.loading = false;
-                }else{
-                    let formData = new FormData();
-                    for (let i = 0; i < this.files.length; i++) {
-                    formData.append("file[]", this.files[i]);
-                    }
-                    formData.append("path", this.path+"/");
+                } catch(e) { console.error(e)}
+            } else {
+                let formData = new FormData();
+                for (let i = 0; i < this.files.length; i++) formData.append("file[]", this.files[i]);
+                formData.append("path", this.path+"/");                    
 
-                    this.loading = true;
-                    this.progressbar.show = true;
-
+                try {
                     let r = await this.$axios.$post('/filemanager/'+this.prefix+'/upload/', formData, {
                         headers: {
                             'content-type': 'multipart/form-data'
@@ -755,32 +757,18 @@ export default {
                             this.progressbar.value = (pE.loaded/pE.total);
                         }
                     });
-                    
-                
-                    if (r && r.success== true) {
-                        
-                        this.entries = this.entries.concat(r.entries)
-                        this.progressbar.value = 0;
-                        this.progressbar.show = false;
-                        this.loading = false;
-                        this.handleAlert({type:'success', text:'Przesłano pliki'})
-                        this.files = []
-                    } else {
-                        // console.log(r)
-                        this.handleAlert({type:'danger', text:'Wystąpił błąd podczas wysyłania pików. Error Code: '+r.error_code})
-                        this.loading = false;
-                        this.progressbar.show = false;
-                    }
+
+                    this.entries = this.entries.concat(r.entries)
+                    this.handleAlert({type:'success', text:'Przesłano pliki'})
+                } catch(e) {
+                    console.error(e);
                 }
-            }catch(e){
-                console.log(e)
             }
 
-
-            
-            
-            
-
+            this.progressbar.value = 0;
+            this.files = []
+            this.progressbar.show = false;
+            this.loading = false;
         },
         openFileUploadModal(){
             this.additional_modal.show = true;
@@ -822,49 +810,51 @@ export default {
         },
         async fetchData() 
         {
-            //console.log('trying to fetch ', this.path, this.page, this.is_loading, this.areEntries)
-            if(!this.areEntries || this.is_loading){
-                return;
-            }
+            if(!this.areEntries || this.is_loading) return;
             this.is_loading = true;
-            //console.log('fetching')
+            try {
+                let r = await this.$axios.$get(
+                    `/filemanager/`+this.prefix+`/list/?page=`+ this.page+'&path='+this.path+"/"
+                );
 
-            let r = await this.$axios.$get(
-                `/filemanager/`+this.prefix+`/list/?page=`+ this.page+'&path='+this.path+"/"
-            );
-
-            if (r && r.success == true) {
-                //console.log(r)
-                for(let i = 0; i < r.entries.length; i++){
-                    r.entries[i].name_edit_mode = false;
+                for(let i = 0; i < r.entries.length; i++) r.entries[i].name_edit_mode = false;
+                
+                if(this.mimeTypeFilter[0] == "*"){
+                    this.entries = this.entries.concat(r.entries)
+                }else{
+                    for (let i = 0; i < r.entries.length; i++) {
+                        const entry = r.entries[i];
+                        
+                        if(entry.entry_type == "dir"){
+                            this.entries.push(entry)
+                            continue;
+                        }
+                        if(this.mimeTypeFilter.includes(entry.entry_mimetype.split("/")[0])) {
+                            this.entries.push(entry)
+                        }
+                        
+                    }
+                    
                 }
-                this.entries = this.entries.concat(r.entries)
+                
+
                 this.areEntries = r.pagination.is_more;
-                // console.log(r)
-                if(r.pagination.is_more){
-                    this.page += 1;
-                }
-    
-                this.is_loading = false;
+                if(r.pagination.is_more) this.page += 1;
+                        
+                if(this.queue.length > 0) this[this.queue[0]]();
+            } catch(e) {}
 
-                if(this.queue.length > 0){
-                    this[this.queue[0]]();
-                }
-
-            } else {
-                this.handleAlert({type:'danger', text:'Wystąpił błąd podczas ładowania. Error Code: '+r.error_code})
-                // console.log(r)
-            }
+            this.is_loading = false;
         },
         handleFileDrop(e) {
-        let droppedFiles = e.dataTransfer.files;
-        if(!droppedFiles) return;
-        ([...droppedFiles]).forEach(f => {
-            this.pushFileToFiles(f)
-        });
+            let droppedFiles = e.dataTransfer.files;
+            if(!droppedFiles) return;
+            ([...droppedFiles]).forEach(f => {
+                this.pushFileToFiles(f)
+            });
         },
         handleFileInput(e) {
-        let files = e.target.files
+            let files = e.target.files
             if(!files) return;
             ([...files]).forEach(f => {  
                 this.pushFileToFiles(f)
@@ -889,31 +879,62 @@ export default {
                     this.files.push(f);
                     return 
             }
-            let r = await this.$axios.$get(
-                '/filemanager/'+this.prefix+'/mimetype-whitelist/'
-            );
-            if (r && r.success == true) {
+
+            let r = null;
+            try {
+                r = await this.$axios.$get(
+                    '/filemanager/'+this.prefix+'/mimetype-whitelist/'
+                );
+
                 let error = true;
                 const x = f.name.split(".")
-                const tfext = x[x.length-1]
+                const file_extension = x[x.length-1]
                 
                 for (let i = 0; i < r.whitelist.whitelist.length; i++) {
                     const element = r.whitelist.whitelist[i];
-                    
-                    if(element.type == f.type && element.ext.toLowerCase() == tfext.toLowerCase()){
+
+                    let first_mimetype_chunk_whitelist = element.type.split("/")[0];
+                    let second_mimetype_chunk_whitelist = element.type.split("/")[1];
+
+                    let first_mimetype_chunk_file = f.type.split("/")[0];
+                    let second_mimetype_chunk_file = f.type.split("/")[1];
+
+                    let correct = [];
+
+                    if(first_mimetype_chunk_whitelist == first_mimetype_chunk_file) {
+                        correct.push(true);
+                    } else if(first_mimetype_chunk_whitelist == '*') {
+                        correct.push(true);
+                    } else {
+                        correct.push(false);
+                    }
+
+                    if(second_mimetype_chunk_whitelist == second_mimetype_chunk_file) {
+                        correct.push(true);
+                    } else if(second_mimetype_chunk_whitelist == '*') {
+                        correct.push(true);
+                    } else {
+                        correct.push(false);
+                    }
+
+                    if(element.ext.toLowerCase() == file_extension.toLowerCase()) {
+                        correct.push(true);
+                    } else {
+                        correct.push(false);
+                    }
+
+                    if(correct.indexOf(false) == -1) {
                         error = false;
+                        break;
                     }
                 }
-                if(!error){
+
+                if(error == false) {
                     this.files.push(f);
-                }else{
-                    this.handleAlert({type:'danger', text:'Przesłano plik o niezgodnym typie'})
-                }
-                
-            } else {
-                this.handleAlert({type:'danger', text:'Wystąpił błąd podczas sprawdzania pików. Error Code: '+r.error_code})
-            }
-            
+                } else this.handleAlert({type:'danger', text:'Przesłano plik o niezgodnym typie'});
+            } catch(e) {
+                console.error(e);
+            }            
         },
         removeFile(fileKey){
             this.files.splice(fileKey, 1)
