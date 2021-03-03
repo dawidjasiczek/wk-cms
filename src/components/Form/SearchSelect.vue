@@ -1,5 +1,5 @@
 <template>
-    <div class="wk-select">
+    <div class="wk-select"  v-click-outside="() => { if(focus == true) toggle() }">
         <div class="wk-select__inner"
             :class="{
                 'wk-select__inner--focus': focus,

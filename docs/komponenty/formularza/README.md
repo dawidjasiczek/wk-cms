@@ -195,10 +195,10 @@ btnsGroupValue: [
 
 ##### Użycie 
 ```
-<WkSelect label="Label selecta" :options="selectOptions" v-model="selectValue" textProp="text" />
+<WkSelect label="Label selecta" :options="selectOptions" v-model="selectValue" textProp="text" valueProp="value" />
 ```
 ```js
-letselectValue: "";
+selectValue: "";
 selectOptions: [
     {
         value: "PHP",
