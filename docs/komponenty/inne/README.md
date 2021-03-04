@@ -365,3 +365,62 @@ Tooltip budujemy za pomocą 2 slotów. W pierwszym, nie nazwanym jest zawartoś�
 Po wyemitowaniu dowolnej z tych wartości, *WkConfirm* znika.
 ##### Zależności
 *WkConfirm* korzysta z [@popperjs](https://popper.js.org/)
+
+## Tamer Updater
+
+Służy aktualizacji tamera.
+!> Działa tylko w przypadku używnia WK-Tamer.
+<!-- <img src="./images/confirm.png"  style="display: block"> -->
+
+##### Użycie 
+W *pierwszym viewsie* jaki zobaczy user (zwyczajowo dashboard)
+```
+<WkTamerUpdater />
+```
+
+Routy wk tamer (Dobrze jest dodać middleware pilnujący zalogowania)
+
+```
+
+$app->get("/api/_system/checkForUpdates", 'updater::check')->middleware('isAdminLoggedIn');
+$app->post("/api/_system/update", 'updater::update')->middleware('isAdminLoggedIn');
+
+
+```
+
+updater.php
+```
+namespace Tamer\Routing;
+
+class Controller {
+
+    public function check($req, $res){
+
+        $U = new \Tamer\System\Updater();
+
+        $res->json([
+            'success' => true,
+            'data' => $U->checkForUpdates()
+        ]);
+    }
+
+    public function update($req, $res){
+
+        $U = new \Tamer\System\Updater();
+
+        $res->json([
+            'success' => true,
+            'update_status' => $U->update()
+        ]);
+    }
+
+    public function test($req, $res){
+        $res->json([
+            'success' => true,
+            'time' => microtime(true),
+            'tamer_version' => TAMER_VERSION
+        ]);
+    }
+
+}
+```
