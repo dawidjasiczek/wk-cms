@@ -1,8 +1,8 @@
-import Store from '../store';
+
 export const WKAlerts = {
-    install(Vue, options) {
+    install(Vue, config) {
         Vue.prototype.$alert = (options)=>{
-            Store.dispatch('addAlert', options)
+            config.store.dispatch('addAlert', options)
         }
     }
 }

@@ -68,10 +68,18 @@ export const WKAxios = {
                 //e404
                 if(error.response.status == 404){
                     if(Store !== null){
-                        Store.dispatch('addAlert', {
-                            type: 'error', 
-                            msg: Store?.state?.messages?.Axios?.e404 || 'Request failed with status code 404'
-                        });
+                        if(Store && Store.state  && Store.state.messages && Store.state.messages.Axios && Store.state.messages.Axios.e404){
+                            Store.dispatch('addAlert', {
+                                type: 'error', 
+                                msg: Store.state.messages.Axios.e404
+                            });
+                        }else{
+                            Store.dispatch('addAlert', {
+                                type: 'error', 
+                                msg: 'Request failed with status code 404'
+                            });
+                        }
+                        
                     }
                     else{
                         console.error('[WkAxios] Request failed with status code 404:');
@@ -81,14 +89,26 @@ export const WKAxios = {
                 else{
                     if(options.config.displayErrorsFromResponse === true){
                         if(Store !== null){
-                            Store.dispatch('addAlert', {
-                                type: 'error', 
-                                msg: error?.response?.data?.msg || 'Error message was not provided'
-                            });
+                            if(error && error.response && error.response.data && error.response.data.msg){
+                                Store.dispatch('addAlert', {
+                                    type: 'error', 
+                                    msg: error.response.data.msg
+                                });
+                            }else{
+                                Store.dispatch('addAlert', {
+                                    type: 'error', 
+                                    msg:'Error message was not provided'
+                                });
+                            }
+                           
                         }
                         else{
                             console.error('[WkAxios] Request failed with message:');
-                            console.error((error?.response?.data?.msg || 'Error message was not provided'));
+                            if(error && error.response && error.response.data && error.response.data.msg){
+                                console.error(error.response.data.msg)
+                            }else{
+                                console.error('Error message was not provided');
+                            }
                         }
                     }else{
                         if(Store !== null){
@@ -107,7 +127,7 @@ export const WKAxios = {
                                     url_to_split = url_to_split.split("/");
                                     for(let i = 0; i < url_to_split.length; i++){
                                         if(url_to_split[i] == options.config.urlPrefix && i < url_to_split.length - 1){
-                                            if(Store?.state?.messages?.Axios[url_to_split[i + 1]]){
+                                            if(Store && Store.state && Store.state.messages && Store.state.messages.Axios[url_to_split[i + 1]]){
                                                 // console.log(url_to_split[i + 1])
                                                 message = Store.state.messages.Axios[url_to_split[i + 1]]["e"+error.response.data.error_code];
                                             }
@@ -120,7 +140,7 @@ export const WKAxios = {
                                 //na wejście dostał relatywa i kleił z base - base prefix sprawdzamy z ostatniego elementu baseURL, a message key bierzemy z pierwszego elementu URL
                                 if(e_conf.baseURL.endsWith('/' + options.config.urlPrefix)){
                                     const group = e_conf.url.split('/')[1];
-                                    if(Store?.state?.messages?.Axios[group]){
+                                    if(Store && Store.state && Store.state.messages && Store.state.messages.Axios[group]){
                                         message = Store.state.messages.Axios[group]["e"+error.response.data.error_code];
                                     }
                                 }
@@ -129,7 +149,11 @@ export const WKAxios = {
                             if(message !== null && message !== undefined){
                                 Store.dispatch('addAlert', { type: 'error', msg: message});
                             }else{
-                                Store.dispatch('addAlert', { type: 'error', msg: Store?.state?.messages?.Axios?.server_error || 'Unknown server error'});
+                                if(Store && Store.state && Store.state.messages && Store.state.messages.Axios && Store.state.messages.Axios.server_error){
+                                    Store.dispatch('addAlert', { type: 'error', msg: Store.state.messages.Axios.server_error});
+                                }else{
+                                    Store.dispatch('addAlert', { type: 'error', msg: 'Unknown server error'});
+                                }
                             }
                         }
                         else{
@@ -139,14 +163,23 @@ export const WKAxios = {
                 }
             } else if (error.request) {
                 if(Store !== null){
-                    Store.dispatch('addAlert', { type: 'error', msg: Store?.state?.messages?.Axios?.e404 || 'Could not connect to the server'});
+                    if(Store && Store.state && Store.state.messages && Store.state.messages.Axios && Store.state.messages.Axios.e404){
+                        Store.dispatch('addAlert', { type: 'error', msg: Store.state.messages.Axios.e404});
+                    }else{
+                        Store.dispatch('addAlert', { type: 'error', msg:  'Could not connect to the server'});
+                    }
+                    
                 }
                 else{
                     console.error('[WkAxios] Could not connect to the server');
                 }
             } else {
                 if(Store !== null){
-                    Store.dispatch('addAlert', { type: 'error', msg: Store?.state?.messages?.Axios?.server_error || 'Unknown server error'});
+                    if(Store && Store.state && Store.state.messages && Store.state.messages.Axios && Store.state.messages.Axios.server_error){
+                        Store.dispatch('addAlert', { type: 'error', msg: Store.state.messages.Axios.server_error});
+                    }else{
+                        Store.dispatch('addAlert', { type: 'error', msg: 'Unknown server error'});
+                    }
                 }
                 else{
                     console.error('[WkAxios] Unknown server error');

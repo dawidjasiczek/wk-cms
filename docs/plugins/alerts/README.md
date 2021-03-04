@@ -10,7 +10,9 @@ WKCMS ma podpięty moduł komunikatów. Do poprawnego działania wymaga on użyc
 W pliku `main.js`
 ```js
 import { WKAlerts } from 'wk-cms/src/plugins/alerts';
-Vue.use(WKAlerts);
+Vue.use(WKAlerts, {
+  store
+});
 ```
 
 ### store

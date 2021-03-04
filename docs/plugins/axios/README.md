@@ -22,7 +22,7 @@ export default {
 W pliku `main.js`
 ```js
 import { WKAxios } from 'wk-cms/src/axios/axios.js'
-import axiosOptions from 'wk-cms/src/config/axios.config.js'
+import axiosOptions from './config/axios.config.js'
 Vue.use(WKAxios, {
   config: axiosOptions,
   store
