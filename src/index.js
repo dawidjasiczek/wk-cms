@@ -56,6 +56,7 @@ import WkSeoChecker from './components/Others/SeoChecker'
 import WkTooltip from './components/Others/Tooltip'
 import WkCaret from './components/Others/Caret'
 import WkConfirm from './components/Others/Confirm'
+import WkTamerUpdater from './components/Others/TamerUpdater'
 
 // Special
 import WkFormsEditor from './components/Special/FormsEditor'
@@ -132,6 +133,8 @@ const WkCMS = {
        Vue.component('WkConfirm', WkConfirm);
 
        Vue.component('WkFormsEditor', WkFormsEditor);
+
+       Vue.component('WkTamerUpdater', WkTamerUpdater);
 
        Vue.use(MessageBox);
        Vue.use(vClickOutside)
