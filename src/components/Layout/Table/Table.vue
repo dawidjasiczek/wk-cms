@@ -44,11 +44,11 @@
                             class="wk-table__expandabletr"
                         >
                             <td :colspan="numberOfColumns">
-                                <AnimatedCollapse :show="d.___expanded === true">
+                                <WkAnimatedCollapse :show="d.___expanded === true">
                                     <div class="wk-table__expandablewrapper">
                                         <slot name="expandable" :row="d" />
                                     </div>
-                                </AnimatedCollapse>
+                                </WkAnimatedCollapse>
                             </td>
                         </tr>
                     </template>

@@ -43,9 +43,9 @@ export default {
       if(this.checkedForUpdates) return;
         try {
             let r = await this.$axios.$get("/_system/checkForUpdates");
-            console.log(r)
             if(r && r.success == true){
                 if(r.data && r.data !== false){
+                
                 this.newV = r.data.new_version;
                 this.changelog = r.data.changelog;
                 this.updateModal = true;
