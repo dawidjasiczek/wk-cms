@@ -6,7 +6,8 @@
                 'wk-confirm__content--wider': wide
             }" 
             ref="popper" 
-            :data-visible="showTooltip"
+            :data-visible="popperVisible"
+            v-if="showTooltip"
         >
             <template>
                 <p class="text--bold my-0">{{title}}</p>
@@ -19,7 +20,7 @@
         </div>
 
         <div class="wk-confirm__reference" ref="reference"
-            @click="showTooltip = true"
+            @click="showPopper"
         >
             <slot />
         </div>
@@ -35,6 +36,7 @@ export default {
     data(){
         return{
             showTooltip: false,
+            popperVisible: false,
 
             refE: null,
             popper: null,
@@ -59,39 +61,50 @@ export default {
             const ix = a.indexOf(exclusion);
             if(ix !== -1) a.splice(ix, 1);
             return a;
+        },
+        showPopper(){
+            this.showTooltip = true;
+            this.$nextTick(_ => {
+                this.refE = this.refE || this.$refs['reference'];
+                this.popper = this.$refs['popper'];
+
+                this.popperInstance = createPopper(this.refE, this.popper, {
+                    placement: this.position,
+                    modifiers: [
+                        {
+                            name: 'flip',
+                            options: {
+                                fallbackPlacements: this.getOtherPositions(this.position)
+                            },
+                        },
+                        {
+                            name: 'offset',
+                            options: {
+                                offset: [0, 2]
+                            }
+                        }
+                    ]
+                });
+
+                this.popperVisible = true;
+            });
+        },
+        hidePopper(){
+            if(this.popperInstance){
+                this.popperInstance.destroy();
+            }
+            this.showTooltip = false;
+            this.popperVisible = false;
         }
     },
 
-    mounted(){
-        this.refE = this.refE || this.$refs['reference'];
-        this.popper = this.$refs['popper'];
+    // mounted(){
+        
+    // },
 
-        // console.log(this)
-
-        this.popperInstance = createPopper(this.refE, this.popper, {
-            placement: this.position,
-            modifiers: [
-                {
-                    name: 'flip',
-                    options: {
-                        fallbackPlacements: this.getOtherPositions(this.position)
-                    },
-                },
-                {
-                    name: 'offset',
-                    options: {
-                        offset: [0, 2]
-                    }
-                }
-            ]
-        });
-    },
-
-    destroyed() {
-        if(this.popperInstance){
-            this.popperInstance.destroy();
-        }
-    },
+    // destroyed() {
+        
+    // },
     
 
     props: {
