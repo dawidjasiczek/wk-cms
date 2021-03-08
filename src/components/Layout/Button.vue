@@ -53,9 +53,9 @@ export default {
 
         if (this.disabled && this.disabled ==true)
             c.push("disabled")
-        if (this.loading && this.loading ==true)
-            c.push("relative")
-
+        // if (this.loading && this.loading ==true)
+        //     c.push("relative")
+        c.push("relative")
         c = c.join(" ");
         c +=  " "+this.classes
         return c;
