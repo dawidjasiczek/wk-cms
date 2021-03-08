@@ -262,8 +262,9 @@ Rozwijanej tablicy
 
 | Nazwa | Typ danych | Opis | 
 |:-:|:-:|:-:|
-| show | `Boolean` | Flaga informująca czy animated collapse ma być otwarty |
+| show | `[String, Number, Boolean]` | Flaga informująca czy animated collapse ma być otwarty |
 | remainOpen | `Boolean` | Jak otworzysz inne animated collapse to ten się nie zamknie |
+| onValue | `[String, Number, Boolean]` | Jaka wartość ma być odpalającą. Default: `true` |
 
 !> Animated Collapseów nie można zagnieżdzać.
 

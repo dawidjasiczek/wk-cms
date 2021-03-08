@@ -19,12 +19,16 @@ export default {
 
     props: {
         show: {
-            type: Boolean,
+            type: [String, Number, Boolean],
             default: false
         },
         remainOpen: {
             type: Boolean,
             default: false
+        },
+        onValue: {
+            type: [String, Number, Boolean],
+            default: true
         }
     },
 
@@ -41,7 +45,7 @@ export default {
 
     methods: {
         handleShow(noAnimation = false){
-            if(this.show === true){
+            if(this.show == this.onValue){
                 this.open(400, noAnimation);
             }
             else{
