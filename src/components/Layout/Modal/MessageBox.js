@@ -4,14 +4,29 @@ import vueTemplate from './MessageBoxTemplate';
 const ElementConstructor = Vue.extend(vueTemplate);
 
 let instance, resolve, reject = null;
+let waitForCleanup = true;
 
-function cleanInstance(){
-    instance.show = false;
-    setTimeout(_ => {
-        document.body.removeChild(instance.$el);
-        instance.$destroy();
-        instance = null;
-    }, 200);
+function cleanInstance(waitForCleanup){
+    return new Promise((localResolve, localReject) => {
+        instance.show = false;
+        if(waitForCleanup === false) localResolve();
+        setTimeout(_ => {
+            if(instance.$el){
+                const bodyChilds = document.body.childNodes;
+                for(let i = bodyChilds.length - 1; i >= 0; i--){
+                    if(bodyChilds[i].isSameNode(instance.$el)){
+                        document.body.removeChild(instance.$el);
+                    }
+                }
+            }
+            instance.$destroy();
+            instance = null;
+            if(waitForCleanup !== false){
+                return localResolve();
+            }
+        }, 200);
+    });
+    
 }
 
 const MessageBox = (options) => {
@@ -47,15 +62,18 @@ const MessageBox = (options) => {
     if(options.showInput === true){
         instance.showInput = true;
     }
+    if(options.waitForCleanup === false){
+        waitForCleanup = false;
+    }
 
 
-    instance.$on('confirm', _ => {
-        resolve(_);
-        cleanInstance();
+    instance.$on('confirm', async _ => {
+        await cleanInstance(waitForCleanup);
+        return resolve(_);
     });
-    instance.$on('cancel', _ => {
-        reject(_);
-        cleanInstance();
+    instance.$on('cancel', async _ => {
+        await cleanInstance(waitForCleanup);
+        return reject(_);
     });
 
     
