@@ -1,6 +1,6 @@
 ![logo](//wirtuozikodu.pl/static/imgs/favicon.png)
 
-# WK-CMS <small>2.3.2</small>
+# WK-CMS <small>2.4.3</small>
 
 > Dokumentacja techniczna
 
