@@ -21,7 +21,7 @@
 | required | `Boolean` | Czy input jest wymagany (W przypadku użycia funkcji *validate*, input nie-wymagany zawsze zdaje test) |
 | regex | `RegExp` | Pattern RegExpa wedle którego ma sprawdzać wartość przy *validate* |
 | customValidator | `Function` | Własna funkcja wykorzystywana przy *validate* |
-| maxLength | `Number` | Maksymalna długość. **UWAGA**: Dotyczy to jedynie typu *number*. W innym przypadku użyjemy *max* |
+| max | `Number` | Maksymalna długość. **UWAGA**: Dotyczy to jedynie typu *number*. W innym przypadku użyjemy *maxLength* |
 | disabled | `Boolean` | Flaga ustawiająca input w tryb disabled |
 | id | `String` | Przypisuje inputowi htmlowe id |
 | name | `String` | Przypisuje inputowi htmlowe name |
