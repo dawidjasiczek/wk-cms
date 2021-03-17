@@ -281,6 +281,7 @@ selectOptions: [
 | label | `String` | Label selectu |
 | value | `String, Number` | Value selectu |
 | id | `String` | Przypisuje selectu htmlowe id |
+| selectOrderMode | `Boolean` | Jeśli `true`, elementy wyświetlają się w kolejności wyboru. Default: `false` |
 
 !> **UWAGA** <br> Należy jako v-model podać **tablicę** (`Array`)!
 

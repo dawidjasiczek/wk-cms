@@ -146,9 +146,25 @@ export default {
         },
 
         selectedOptions(){
-            return this.parsedOptions.filter(option => {
-                return this.v.findIndex(_ => _ == option.value) !== -1
-            });
+            
+            if(this.selectOrderMode === true){
+                const  o = [];
+                for (let i = 0; i < this.v.length; i++) {
+                    
+                    const ix = this.parsedOptions.find(_ => _.value == this.v[i]);
+                     
+
+                    if(ix) o.push({
+                        value: ix.value,
+                        text: ix.text
+                    })
+                }
+                return o;
+            }else{
+                return this.parsedOptions.filter(option => {
+                    return this.v.findIndex(_ => _ == option.value) !== -1
+                });
+            }
         }
     },
 
@@ -317,6 +333,10 @@ export default {
         name: {
             type: String,
             default: ''
+        },
+        selectOrderMode:{
+            type: Boolean,
+            default:false
         }
     }
 }
