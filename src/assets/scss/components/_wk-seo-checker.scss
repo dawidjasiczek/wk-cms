@@ -4,11 +4,14 @@
     padding-left: 8px;
     border-left: 6px solid #f3f3f3;
     border-radius: 2px;
+    
   }
 
   .test-name{
     font-size: 17px;
     margin-bottom: 10px;
+    display:  block;
+    width: 100%;
   }
 
   .test-result{
@@ -64,7 +67,7 @@
 .wk-seo-checker-progressbar{
   display: flex;
   align-items: flex-start;
-
+  width: 100%;
   .icon{
     width: 50px;
     text-align: center;

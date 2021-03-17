@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="seo-checker">
-            <div class="seo-checker-results" v-if="content.length > 0">
+        <div class="wk-seo-checker">
+            <div class="wk-seo-checker-results" v-if="content.length > 0">
                 <div class="row" style="margin-bottom: 30px;">
                     <div class="test-name">
                                 <b>Ogólny wynik testu SEO</b>
@@ -13,7 +13,7 @@
                         
                         
                     </div>
-                    <div class="seo-checker-progressbar">
+                    <div class="wk-seo-checker-progressbar">
                         <div class="icon">
                             <div class="result-icon nok">
                                 <fa-icon icon="frown" />
@@ -62,7 +62,7 @@
                 </AnimatedCollapse>
                 
             </div>
-            <div class="seo-checker-footer">
+            <div class="wk-seo-checker-footer">
                 <a href="https://wirtuozikodu.pl" target="_blank">
                     WK-SeoChecker Made with <fa-icon icon="heart" /> by <img src="https://wirtuozikodu.pl/static/imgs/logo.svg" alt="WK"> Wirtuozi Kodu
                 </a>
