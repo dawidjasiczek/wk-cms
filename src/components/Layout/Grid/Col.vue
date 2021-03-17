@@ -43,7 +43,7 @@ export default {
             if(this.offsetXl  !== null){
                 obj['off-xl-'+this.offsetXl] = true
             }
-
+            obj['mb-'+this.mb] = true
             return obj
         }
     },
@@ -95,6 +95,10 @@ export default {
         offsetXl: {
             type: [String, Number],
             default: null
+        },
+        mb:{
+            type: [String, Number],
+            default: "1"
         }
     }
 }
