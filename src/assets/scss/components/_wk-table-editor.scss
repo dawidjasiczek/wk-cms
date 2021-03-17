@@ -1,0 +1,111 @@
+.wk-table-editor{
+	&-row{
+		width: 100%;
+		border-top: none;
+		border-bottom: 1px solid black;
+		&:last-child{
+			border-top: 1px solid black;
+		}
+		&__container{
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+		}
+		&__content{
+			width: 100%;
+		}
+		&__cells{
+			display: flex;
+			flex-direction: row;
+			width: 100%;
+			position: relative;
+			transition: 0.2s all ease-in-out;
+			
+			&--head{
+				border-bottom: none;
+				color: white;
+				font-weight: $font-bold;
+				background-color: $primary;
+				text-align: center;
+				&:hover{
+					background-color: $primary !important;
+					
+				}
+			}
+			
+			&:hover{
+				background-color: $gray_300;
+				.remove-row{
+					opacity: 1;
+					pointer-events: visible;
+				}
+			}
+			
+		}
+		.remove-row{
+			opacity: 0;
+			pointer-events: none;
+			position: absolute;
+			left: 0;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			transition: 0.2s all ease-in-out;
+			z-index: 2;
+		}
+		.add-row{
+			opacity: 0;
+			pointer-events: none;
+			position: absolute;
+			left: 50%;
+			top: 100%;
+			transform: translate(-50%, -50%);
+			transition: 0.2s all ease-in-out;
+		}
+		.remove-column{
+			opacity: 0;
+			pointer-events: none;
+			position: absolute;
+			left: 50%;
+			top: 0;
+			transform: translate(-50%, -50%);
+			transition: 0.2s all ease-in-out;
+		}
+		.add-column{
+			opacity: 0;
+			pointer-events: none;
+			position: absolute;
+			left: 100%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			transition: 0.2s all ease-in-out;
+		}
+		.edit-cell{
+			opacity: 0;
+			pointer-events: none;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			transition: 0.2s all ease-in-out;
+		}
+		&__cell{
+			position: relative;
+			padding: 10px;
+			min-height: 40px;
+			border-left:1px solid black;
+			transition: 0.2s all ease-in-out;
+			&:last-child{
+				border-right: 1px solid black;
+			}
+			&:hover{
+				.add-row, .add-column, .edit-cell, .remove-column{
+					z-index: 2;
+					opacity: 1;
+					pointer-events: visible;
+				}
+				
+			}
+		}
+	}
+
+}

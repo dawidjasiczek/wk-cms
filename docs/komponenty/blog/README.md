@@ -30,6 +30,16 @@ Blog Editor to pozwalający tworzyć dynamiczny kontent edytor zawierający moż
 
 !> *Uwaga!* <br> Editor group musi posiadać zarówno przypisany `value` do zmiennej typu `Array` jak i metodę `@content-updated` która ręcznie go aktualizuje. W naszym przypadku jest to najprostsze `(c)=>{this.editor = c}`
 
+#####  Emits
+
+| Nazwa | Opis| Zwracane dane | 
+|:-:|:-:|:-:|
+| content-updated |  Wywołuje się przy większości zmian treści.  | Zwraca cały `array` bloczków. |
+| content-delete | Wywołuje się przy usunięciu bloczku | Pod zmienną obiekt z właściwością  `item` zwraca c_id bloczku do usunięcia |
+| content-move | Wywołuje się przy przesuwaniu bloczków | Pod zmiennymi obiekt z właściwościami `item1` i `item2` zwraca c_id bloczków które trzeba zamienić miejscami |
+| content-edit | Wywołuje się przy edycji bloczku | Zwraca obiekt z właściwością  `item` w którym zawiera się cały obiekt `block` do zedytowania |
+| content-add | Wywołuje się przy dodaniu nowego bloczku | Zwraca obiekt z właściwością `item` w którym zawiera się cały obiekt `block` do dodania |
+
 ## Seo Checker
 
 Seo Checker to moduł który współgra z komponentem *WkEditor*. Korzysta on z jego bloczków.

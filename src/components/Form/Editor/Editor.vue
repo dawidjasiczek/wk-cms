@@ -259,6 +259,9 @@ export default {
             }
             this.clearModals()
             this.blocks.push(block);
+             this.$emit('content-add', {
+                item: block
+            });
             this.updateContent()
         },
         editTableBlock(table, c_id){
@@ -268,6 +271,10 @@ export default {
                 return;
             }
             this.blocks[ix].content = table;
+
+            this.$emit('content-edit', {
+                item: this.blocks[ix]
+            });
             this.updateContent()
         },
         handleEditBlock(c_id){
@@ -276,6 +283,7 @@ export default {
                 this.$alert({type: "danger", msg: "Wystąpił błąd [EDITOR 503]"})
                 return;
             }
+            
             const block = this.blocks[ix]
             if(block.type == 'text'){
                 this.textModal= true;
@@ -314,6 +322,9 @@ export default {
                 this.blocks[this.imageModalEditingIndex].image = this.filemanager_file;
                 this.imageModal = false;
             }
+            this.$emit('content-edit', {
+                item: this.blocks[this.textModalEditingIndex]
+            });
             this.updateContent();
             this.clearModals();
         },
@@ -342,6 +353,10 @@ export default {
                 return
             }
             this.swap(this.blocks, ix, newIndex)
+            this.$emit('content-move', {
+                item1: this.blocks[ix].c_id,
+                item2: this.blocks[newIndex].c_id
+            });
             this.updateContent();
         },
         swap(arr, x, y) {
@@ -359,9 +374,13 @@ export default {
                 this.$alert({type: "danger", msg: "Wystąpił błąd [EDITOR 302]"})
                 return;
             }
+            
             this.block_to_delete = "";
             this.confirmDelete = false;
             this.blocks.splice(ix, 1);
+            this.$emit('content-delete', {
+                item: this.blocks[ix].c_id,
+            });
             this.updateContent()
         },
         confirmDeleteBlock(c_id){
