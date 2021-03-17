@@ -26,7 +26,14 @@
                     'wk-input__input--size-small': size == 'small'
                 }"
             >
-                <input 
+                <span class="wk-input__counter" 
+                :class="{
+                    'wk-input__counter--disabled': disabled,
+                    'wk-input__counter--incorrect': incorrect, 
+                    'wk-input__counter--correct': correct,
+                }"
+                v-if="(focus && maxLength != -1)">{{v.length}}/{{maxLength}}</span>
+               <input 
                     :name="name" 
                     :id="el_id" 
                     :type="type" 

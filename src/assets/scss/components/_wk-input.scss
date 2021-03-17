@@ -27,6 +27,32 @@
         }
     }
 
+    &__counter{
+        position: absolute;
+        top: 0%;
+        right: 5px;
+        color: $gray_700;
+        transition: all .2s ease-in-out;
+        transform-origin: left center;
+        cursor: text;
+        text-align: right;
+        transform: scale(.75) translateY(3px);
+        opacity: .85;
+        color: $primary_400;
+        
+
+        &--disabled{
+            cursor: not-allowed;
+            color: $gray;
+        }
+
+        &--correct{
+            color: $success_600;
+        }
+        &--incorrect{
+            color: $danger;
+        }
+    }
     &__label{
         display: block;
         // width: 100%;
