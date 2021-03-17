@@ -377,10 +377,11 @@ export default {
             
             this.block_to_delete = "";
             this.confirmDelete = false;
-            this.blocks.splice(ix, 1);
+            
             this.$emit('content-delete', {
                 item: this.blocks[ix].c_id,
             });
+            this.blocks.splice(ix, 1);
             this.updateContent()
         },
         confirmDeleteBlock(c_id){
