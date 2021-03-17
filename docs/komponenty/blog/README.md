@@ -27,6 +27,7 @@ Blog Editor to pozwalający tworzyć dynamiczny kontent edytor zawierający moż
 | content | `All` | Zawartość. W przypadku typu `image` jest tam atrybut *alt* |
 | c_id | `All` | Generowane id obiektu. Wszystkie zawierają prefix (`textblock_`, `table_`, `iframeblock_` lub `imageblock_`) |
 | caption | `Image` | Podpis obrazka |
+| image | `Image` | Link do obrazka |
 
 !> *Uwaga!* <br> Editor group musi posiadać zarówno przypisany `value` do zmiennej typu `Array` jak i metodę `@content-updated` która ręcznie go aktualizuje. W naszym przypadku jest to najprostsze `(c)=>{this.editor = c}`
 

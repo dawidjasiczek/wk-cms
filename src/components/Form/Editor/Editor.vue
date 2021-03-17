@@ -311,20 +311,27 @@ export default {
             if(type == "text"){
                 this.blocks[this.textModalEditingIndex].content = this.textModalEditor;
                 this.textModal = false;
+                this.$emit('content-edit', {
+                    item: this.blocks[this.textModalEditingIndex]
+                });
             }
             if(type == "iframe"){
                 this.blocks[this.iframeModalEditingIndex].content = this.iframeModalContent;
                 this.iframeModal = false;
+                this.$emit('content-edit', {
+                    item: this.blocks[this.iframeModalEditingIndex]
+                });
             }
             if(type == "image"){
                 this.blocks[this.imageModalEditingIndex].content = this.imageModalAlt;
                 this.blocks[this.imageModalEditingIndex].caption = this.imageModalCaption;
                 this.blocks[this.imageModalEditingIndex].image = this.filemanager_file;
                 this.imageModal = false;
+                this.$emit('content-edit', {
+                    item: this.blocks[this.imageModalEditingIndex]
+                });
             }
-            this.$emit('content-edit', {
-                item: this.blocks[this.textModalEditingIndex]
-            });
+            
             this.updateContent();
             this.clearModals();
         },
