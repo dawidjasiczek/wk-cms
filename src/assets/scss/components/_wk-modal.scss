@@ -17,7 +17,16 @@
     @include screen('xs'){
         padding: 30px 0;
     }
-
+    &--big{
+        .wk-modal__body{
+            max-width: 900px;
+        }
+    }
+    &--full{
+        .wk-modal__body{
+            max-width: 100%;
+        }
+    }
 
     &__body{
         background-color: #fff;

@@ -384,7 +384,6 @@ export default {
             
             this.block_to_delete = "";
             this.confirmDelete = false;
-            
             this.$emit('content-delete', {
                 item: this.blocks[ix].c_id,
             });
