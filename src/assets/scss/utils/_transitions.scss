@@ -1,61 +1,61 @@
 .fade-enter-active, .fade-leave-active {
     transition: opacity .2s ease;
 }
-
+​
 .fade-enter, .fade-leave-to {
     opacity: 0;
 }
-
+​
 .scale-y-enter-active, .scale-y-leave-active {
     transition: all .3s ease;
     transform-origin: center top;
 }
-
+​
 .scale-y-enter, .scale-y-leave-to {
     opacity: 0;
     transform: scaleY(.5);
     transform-origin: center top;
 }
-
+​
 .slidedown-enter, .slidedown-leave-to {  
     transform: translateY(-100px);
     opacity: 0;
 }
-
+​
 .slidedown-enter-active, .slidedown-leave-active {
     transition: all .2s ease;
 }
-
+​
 .slideleft-enter, .slideleft-leave-to {  
     transform: translateX(100px);
     opacity: 0;
 }
-
+​
 .slideleft-enter-active, .slideleft-leave-active {
     transition: all .2s ease;
 }
-
+​
 .slideright-enter, .slideright-leave-to {  
     transform: translateX(-100px);
     opacity: 0;
 }
-
+​
 .slideright-enter-active, .slideright-leave-active {
     transition: all .2s ease;
 }
-
-.layout-message-enter-active, .layout-message-leave-active {
+​
+.wk-alert-enter-active, .wk-alert-leave-active {
     transition: all .3s;
 }
-.layout-message-enter, .layout-message-leave-to /* .list-leave-active below version 2.1.8 */ {
+.wk-alert-enter, .wk-alert-leave-to /* .list-leave-active below version 2.1.8 */ {
     opacity: 0;
     transform: translateX(50px);
 }
-.layout-message-leave-active {
+.wk-alert-leave-active {
     /* transition: transform .3s; */
     position: absolute;
 }
-
+​
 //global page animation
 .page-enter-active,
 .page-leave-active {
