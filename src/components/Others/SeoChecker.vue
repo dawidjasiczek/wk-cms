@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <AnimatedCollapse :show="showFull">
+                <WkAnimatedCollapse :show="showFull">
                     <WkHint type="info" title="Informacja">Aby wyniki były miarodajne musisz uzupełnić większość pól (zarówno meta jak i "zwykłych")</WkHint>
                     
                     <div class="row mt-1" v-for="(t, ind) in tests" :key="t.name">
@@ -59,7 +59,7 @@
                             </div>
                         </div>   
                     </div>
-                </AnimatedCollapse>
+                </WkAnimatedCollapse>
                 
             </div>
             <div class="wk-seo-checker-footer">
