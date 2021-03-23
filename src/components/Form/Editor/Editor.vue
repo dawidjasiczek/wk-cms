@@ -107,19 +107,24 @@
             <WkWysiwyg v-model="textModalEditor"></WkWysiwyg>
         </WkModal>
         <WkModal @confirm="(iframeModalMode == 'new')? addBlock('iframe'):editBlock('iframe')" :show="iframeModal" size="big" confirmButtonType="success" confirmButtonText="Dodaj" @cancel="iframeModal = false">
-            <h3>{{(iframeModalMode == 'new')? 'Nowy blok z iframe' : 'Edycja bloku z iframe'}}</h3>
+            <h3>{{(iframeModalMode == 'new')? 'Nowy blok z iframe' : 'Edycja bloku iframe'}}</h3>
+            <p>Proszę wstawić cały bloczek iframe! Razem z tagami &#x3c;iframe&#x3e; oraz &#x3c;/iframe&#x3e;</p>
             <WkInput type="textarea" v-model="iframeModalContent" label="Kod z ramki iframe"></WkInput>
         </WkModal>
         <WkModal @confirm="(imageModalMode == 'new')? addBlock('image'):editBlock('image')" :show="imageModal"  confirmButtonType="success" confirmButtonText="Dodaj" 
         @cancel="imageModal = false; filemanager_show=false; filemanager_file=null" >
-            <div class="dashboard-grid mb-1">
+            <WkRow class="mt-1">
+                <WkCol xs="12" sm="8"><h3 class="py-0 my-0">{{(imageModalMode == 'new')? 'Nowy obrazek' : 'Zmiana obrazka'}}</h3></WkCol>
+                <WkCol xs="12" sm="4"><WkButton size="sm" color="info" @click="filemanager_show = true">Wybierz obrazek</WkButton></WkCol>
+            </WkRow>
+            <!-- <div class="dashboard-grid mb-1">
                 <div class="dashboard-grid__column dashboard-grid__column--2">
-                    <h3>{{(imageModalMode == 'new')? 'Nowy obrazek' : 'Zmiana obrazka'}}</h3>
+                    
                 </div>
                 <div class="dashboard-grid__column dashboard-grid__column--2 text--right  dashboard-grid__column--middle">
                     <button class="btn btn--info btn--sm" @click="filemanager_show = true">Wybierz obrazek</button>
                 </div>
-            </div>
+            </div> -->
             <div >
                 <img class="mx-auto"  style="max-height: 200px; display:block;" v-if="filemanager_file" :src="(filemanager_file)? $store.state.frontUrl+filemanager_file: ''">
             </div>
