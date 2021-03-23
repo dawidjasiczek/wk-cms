@@ -100,7 +100,7 @@
     &__expandabletrigger{
         cursor: pointer;
 
-        img{
+        img,svg{
             width: 15px;
             display: block;
             margin: 0 auto;
@@ -108,7 +108,7 @@
         }
 
         &--expanded{
-            img{
+            img,svg{
                 transform: rotate(180deg);
             }
         }

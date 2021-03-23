@@ -299,15 +299,18 @@ selectOptions: [
 ##### Użycie 
 ```
 <WkSearchSelect 
-    label="Wyszukaj po wycieczce"
-    url="https://api.biurko.store.wirtuozikodu.pl/v1/regions/"
-    value-prop="_id"
-    text-prop="name.pl"
-    v-model="searchedTrip"
-    data-prop="regions"
+    label="Kategoria, wyszukaj po nazwie"
+    ref="add_select"
+    url="/categories/all"
+    value-prop="id"
+    text-prop="name"
+    v-model="selectedCategory"
+    data-prop="categories"
     noData="Nie znaleziono"
     single-item-url="lol"
     single-item-data-prop="trip"
+    msg="Musisz wybrać kategorię"
+    required
 />
 ```
 ##### Props

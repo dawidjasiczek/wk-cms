@@ -65,6 +65,13 @@
 | enableClickOutside | `Boolean` | Pozwala zamknąć modal klikając dookoła. Default: `false` |
 | size | `String` | Szerokość modala. Default: `normal`, Możliwe: `normal`, `big`, `full` |
 
+##### Emity
+
+| Nazwa |  Opis | 
+|:-:|:-:|
+| cancel | Emitowana w przypadku kliknięcia guzika `cancel` |
+| confirm | Emitowana w przypadku kliknięcia guzika `confirm` |
+
 ## Messagebox
 
 Modal wywoływany z kodu
