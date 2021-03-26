@@ -1,7 +1,5 @@
-import Axios from 'axios';
 
 export const Alerts = {
-    namespaced: false,
     state: () => ({
         alerts: []
     }),

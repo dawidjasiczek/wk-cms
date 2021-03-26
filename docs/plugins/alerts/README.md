@@ -4,7 +4,17 @@ WKCMS ma podpięty moduł komunikatów. Do poprawnego działania wymaga on użyc
 
 
 
-## Podpięcie
+## Podpięcie 
+
+w pliku `store/index.js`
+```js
+import {Alerts} from 'wk-cms/src/store/modules/alerts';
+modules: {
+    alerts: Alerts
+}
+```
+
+## Podpięcie (do 2.6.7)
 
 ### main.js
 W pliku `main.js`

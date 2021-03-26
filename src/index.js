@@ -28,6 +28,7 @@ import WkModal from './components/Layout/Modal/Modal'
 import WkHeader from './components/Layout/Header'
 import WkAlert from './components/Layout/Alert'
 import WkViewport from './components/Layout/Viewport'
+import WkLoginView from './components/Layout/LoginView'
 
 // Layout Grid
 import WkRow from './components/Layout/Grid/Row'
@@ -110,6 +111,7 @@ const WkCMS = {
        Vue.component('WkCol', WkCol);
 
        Vue.component('WkViewport', WkViewport);
+       Vue.component('WkLoginView', WkLoginView);
        Vue.component('WkTabs', WkTabs);
        Vue.component('WkTabsPane', WkTabsPane);
 

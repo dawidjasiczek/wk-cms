@@ -30,7 +30,7 @@
 export default {
     computed: {
         alerts(){
-            return this.$store.state.alerts;
+            return this.$store.state.alerts.alerts;
         }
     },
     methods: {
