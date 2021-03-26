@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
-export const Auth = {
-    namespaced: true,
+export const Alerts = {
+    namespaced: false,
     state: () => ({
         alerts: []
     }),
