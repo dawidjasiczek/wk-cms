@@ -1,6 +1,6 @@
 <template>
     <div class="wk-editor">
-        <div class="wk-editor__content">
+        <div class="wk-editor__content wk-editor-custom-styles">
             <div class="wk-editor__placeholder" v-if="blocks.length == 0">
                 <div class="icon">
                     <fa-icon icon="times" />
