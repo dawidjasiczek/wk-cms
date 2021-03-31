@@ -27,3 +27,6 @@ Do obsługi obrazków potrzeba poprawnie skonfigurowanego (za pomocą [filemanag
 | prefix | `String` | Prefix z którego ma korzystać Filemanager (zobacz [Filemanager](/)). Default: `files` |
 | allowedFileMimetypes | `Array` | Tablica z dozwolonymi mimetypami plików. Obsługuje * z obu stron. Default: ['*'] |
 | allowedImageMimetypes | `Array` | Tablica z dozwolonymi mimetypami obrazków. Obsługuje * z obu stron. Default: ['image/*'] |
+
+
+Wyswig można (i dobrze jest) wystilizować tak jak front. Używa sie do tego klasy `custom-quill-styles`

@@ -105,7 +105,11 @@ export default {
     },
     computed:{
         keywordsArray(){
-            return this.keywords.split(" ")
+            let k  = this.keywords.split(",");
+            for(let i = 0; i < k.length; i++){
+                k[i] = k[i].trim();
+            }
+            return k
         },
         html(){
             const h = document.createElement('div');
@@ -419,13 +423,16 @@ export default {
             let imgs = this.imgArr;
             for (let i = 0; i < imgs.length; i++) {
                 for(let j = 0; j < this.keywordsArray.length; j++){
-                    
                     if(imgs[i].alt.toLowerCase().includes(this.keywordsArray[j].toLowerCase())){
                         b++;
                     }
                 }
             }
-            let result = b/imgs.length;
+            let result =  b/imgs.length;
+            if(b == 0){
+                result = 0;
+            }
+            
             if(result>0.50){
                 return {
                     status: "OK",

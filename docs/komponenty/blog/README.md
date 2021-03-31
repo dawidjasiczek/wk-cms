@@ -41,6 +41,8 @@ Blog Editor to pozwalający tworzyć dynamiczny kontent edytor zawierający moż
 | content-edit | Wywołuje się przy edycji bloczku | Zwraca obiekt z właściwością  `item` w którym zawiera się cały obiekt `block` do zedytowania |
 | content-add | Wywołuje się przy dodaniu nowego bloczku | Zwraca obiekt z właściwością `item` w którym zawiera się cały obiekt `block` do dodania |
 
+Edytor można (i dobrze jest) wystilizować tak jak front. Używa sie do tego klasy `wk-editor-custom-styles`
+
 ## Seo Checker
 
 Seo Checker to moduł który współgra z komponentem *WkEditor*. Korzysta on z jego bloczków.
@@ -68,3 +70,4 @@ Seo Checker to moduł który współgra z komponentem *WkEditor*. Korzysta on z 
 | metaTitle | `String`| Meta tytuł sprawdzanego wpisu  |
 
 !> **Uwaga** <br> SeoChecker działa tylko z Edytorem.
+

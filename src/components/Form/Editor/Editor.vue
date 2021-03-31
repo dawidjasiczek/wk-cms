@@ -104,7 +104,7 @@
         </div>
         <WkModal @confirm="(textModalMode == 'new')? addBlock('text'):editBlock('text')" :show="textModal" size="big" confirmButtonType="success" confirmButtonText="Dodaj" @cancel="textModal = false;">
             <h3>{{(textModalMode == 'new')? 'Nowy blok z tekstem' : 'Edytuj blok z tekstem'}}</h3>
-            <WkWysiwyg v-model="textModalEditor"></WkWysiwyg>
+            <WkWysiwyg v-model="textModalEditor" :allowImages="wyswigAllowImages"></WkWysiwyg>
         </WkModal>
         <WkModal @confirm="(iframeModalMode == 'new')? addBlock('iframe'):editBlock('iframe')" :show="iframeModal" size="big" confirmButtonType="success" confirmButtonText="Dodaj" @cancel="iframeModal = false">
             <h3>{{(iframeModalMode == 'new')? 'Nowy blok z iframe' : 'Edycja bloku iframe'}}</h3>
@@ -202,6 +202,10 @@ export default {
             default: ()=>{
                 return [];
             }
+        },
+        wyswigAllowImages: {
+            type: Boolean,
+            default: false
         }
     },
     watch:{

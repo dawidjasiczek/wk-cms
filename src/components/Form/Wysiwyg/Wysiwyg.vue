@@ -10,7 +10,8 @@
             ref="quill"
             class="custom-quill-styles"
         />
-        <WkFileManager v-if="allowImages" isNode :allowedMimetypes='allowedMimetypes'  @selected-file="sc" :show="showModal" @close="closeModal" :prefix="prefix" />
+        <WkFileManager 
+        v-if="allowImages" isNode :allowedMimetypes='allowedMimetypes'  @selected-file="sc" :show="showModal" @close="closeModal" :prefix="prefix" />
     </div>
 </template>
 
