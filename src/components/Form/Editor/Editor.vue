@@ -102,16 +102,16 @@
                 </div>
             </div>
         </div>
-        <WkModal @confirm="(textModalMode == 'new')? addBlock('text'):editBlock('text')" :show="textModal" size="big" confirmButtonType="success" confirmButtonText="Dodaj" @cancel="textModal = false;">
+        <WkModal @confirm="(textModalMode == 'new')? addBlock('text'):editBlock('text')" :show="textModal" size="big" confirmButtonType="success" :confirmButtonText="((textModalMode == 'new')? 'Dodaj':'Zapisz zmiany')" @cancel="textModal = false;">
             <h3>{{(textModalMode == 'new')? 'Nowy blok z tekstem' : 'Edytuj blok z tekstem'}}</h3>
             <WkWysiwyg v-model="textModalEditor" :allowImages="wyswigAllowImages"></WkWysiwyg>
         </WkModal>
-        <WkModal @confirm="(iframeModalMode == 'new')? addBlock('iframe'):editBlock('iframe')" :show="iframeModal" size="big" confirmButtonType="success" confirmButtonText="Dodaj" @cancel="iframeModal = false">
+        <WkModal @confirm="(iframeModalMode == 'new')? addBlock('iframe'):editBlock('iframe')" :show="iframeModal" size="big" confirmButtonType="success" :confirmButtonText="((iframeModalMode == 'new')? 'Dodaj':'Zapisz zmiany')" @cancel="iframeModal = false">
             <h3>{{(iframeModalMode == 'new')? 'Nowy blok z iframe' : 'Edycja bloku iframe'}}</h3>
             <p>Proszę wstawić cały bloczek iframe! Razem z tagami &#x3c;iframe&#x3e; oraz &#x3c;/iframe&#x3e;</p>
             <WkInput type="textarea" v-model="iframeModalContent" label="Kod z ramki iframe"></WkInput>
         </WkModal>
-        <WkModal @confirm="(imageModalMode == 'new')? addBlock('image'):editBlock('image')" :show="imageModal"  confirmButtonType="success" confirmButtonText="Dodaj" 
+        <WkModal @confirm="(imageModalMode == 'new')? addBlock('image'):editBlock('image')" :show="imageModal"  confirmButtonType="success" :confirmButtonText="((imageModalMode == 'new')? 'Dodaj':'Zapisz zmiany')" 
         @cancel="imageModal = false; filemanager_show=false; filemanager_file=null" >
             <WkRow class="mt-1">
                 <WkCol xs="12" sm="8"><h3 class="py-0 my-0">{{(imageModalMode == 'new')? 'Nowy obrazek' : 'Zmiana obrazka'}}</h3></WkCol>
