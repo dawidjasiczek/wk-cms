@@ -31,8 +31,6 @@
 export default {
     data(){
         return{
-            name: "Wirtuoz",
-            surname: "Kodu"
         }
     },
     props: {
@@ -54,6 +52,23 @@ export default {
     computed:{
         short: function(){
             return this.name.charAt(0) + this.surname.charAt(0)
+        },
+        name: function() {
+            if(this.$store.getters['auth/isLoggedIn'] == true) {
+                return this.$store.getters['auth/userName'].split(" ")[0];
+            } else {
+                return '';
+            }
+            
+        },
+        surname: function() {
+            if(this.$store.getters['auth/isLoggedIn'] == true) {
+                let space_ix = this.$store.getters['auth/userName'].indexOf(' ');
+                let surname = this.$store.getters['auth/userName'].substring(space_ix + 1, this.$store.getters['auth/userName'].length);
+                return surname;
+            } else {
+                return '';
+            }
         }
     }
 }
