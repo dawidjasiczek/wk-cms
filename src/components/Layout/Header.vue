@@ -19,7 +19,7 @@
                         </div>
                        
                     </div>
-                    <div class="wk-header__username"> {{name}} {{surname}}</div>
+                    <div class="wk-header__username"> {{name}} </div>
                     <button class="wk-header__logout btn btn--danger btn--sm" @click="logout" ><fa-icon icon="sign-out-alt"/><span>WYLOGUJ</span></button>
                 </div>
             </div>
@@ -50,25 +50,21 @@ export default {
         }
     },
     computed:{
-        short: function(){
-            return this.name.charAt(0) + this.surname.charAt(0)
+        short(){
+            if(this.$store.getters['auth/isLoggedIn'] == true){
+                const n = this.$store.getters['auth/userName'].split(' ');
+                if(n.length > 1){
+                    return n[0][0].toUpperCase() + n[1][0].toUpperCase();
+                }
+                else return n[0][0].toUpperCase() + n[0][1].toUpperCase();
+            }
         },
-        name: function() {
+        name() {
             if(this.$store.getters['auth/isLoggedIn'] == true) {
-                return this.$store.getters['auth/userName'].split(" ")[0];
+                return this.$store.getters['auth/userName'];
             } else {
                 return '';
-            }
-            
-        },
-        surname: function() {
-            if(this.$store.getters['auth/isLoggedIn'] == true) {
-                let space_ix = this.$store.getters['auth/userName'].indexOf(' ');
-                let surname = this.$store.getters['auth/userName'].substring(space_ix + 1, this.$store.getters['auth/userName'].length);
-                return surname;
-            } else {
-                return '';
-            }
+            }  
         }
     }
 }
