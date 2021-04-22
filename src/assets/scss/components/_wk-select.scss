@@ -15,7 +15,7 @@
         &--disabled{
             cursor: not-allowed;
             background-color: $gray_100;
-            .form-select__input{
+            .wk-select__input{
                 background-color: transparent;
             }
         }
