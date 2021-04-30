@@ -6,4 +6,16 @@
     &__label{
         margin: 0px 0px 5px 0px;
     }
+    .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="10px"]::before {
+        content: '10px';
+        font-size: 10px !important;
+      }
+      .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="20px"]::before {
+          content: '20px';
+          font-size: 20px !important;
+      }
+      .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="30px"]::before {
+          content: '30px';
+          font-size: 30px !important;
+      }
 }

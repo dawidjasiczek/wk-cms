@@ -29,7 +29,11 @@ Quill.register(Quill.import('attributors/style/background'), true);
 Quill.register(Quill.import('attributors/style/color'), true);
 Quill.register(Quill.import('attributors/style/direction'), true);
 Quill.register(Quill.import('attributors/style/font'), true);
-Quill.register(Quill.import('attributors/style/size'), true);
+let sizes = Quill.import('attributors/style/size');
+sizes.whitelist = [
+    '10px', '20px', '30px'
+];
+Quill.register(sizes, true);
 Quill.register(IndentStyle, true);
 
 import ImageResize from 'quill-image-resize';
@@ -87,8 +91,8 @@ export default {
                             'width'
                         ],
                         container: [
-                            [{ 'size': [] }],
-                            [{ 'header': [] }],  // custom dropdown
+                            [{ 'size': ['10px', false, '20px', '30px'] }],
+                            [{'header': [1,2,3,4,5,6,false]}],  // custom dropdown
                             ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
                             ['blockquote', 'code-block'],
                             [{ 'list': 'ordered'}, { 'list': 'bullet' }],
